@@ -59,6 +59,7 @@ input.wide {
   background: #f5f5f5;
   border: 1px solid #ccc;
   flex: 1;
+  flex-basis:0;
   overflow: auto;
   padding: 1em;
 }
@@ -83,6 +84,12 @@ input.wide {
 
   #methods span {
     padding: 0.25em 0.5em;
+  }
+
+  #history {
+    flex: 1;
+    flex-basis:0;
+    overflow: auto;
   }
 
   #history li {
@@ -160,6 +167,11 @@ input.wide {
     display: none;
   }
 
+  #history {
+    flex-basis:0;
+    height: calc(100vh - 9em);
+    overflow:auto;
+  }
   #history li {
     border: 1px groove #ccc;
     color: #eee;
