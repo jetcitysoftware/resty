@@ -1,11 +1,12 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import ReactJson from 'react-json-view';
 
 const Response = (props) => {
 
+  console.log('response', props.response);
   return (
-    <>
+    <div id="json">
       <ReactJson
         name="Headers"
         enableClipboard={false}
@@ -18,7 +19,7 @@ const Response = (props) => {
         collapsed={false}
         src={props.response.body}
       />
-      </>
+    </div>
   );
 
 };

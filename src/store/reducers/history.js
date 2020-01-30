@@ -11,13 +11,14 @@ export default (state = initialState, action) => {
   switch (type) {
     case 'SAVE_HISTORY':
       let entry = getHistoryEntry(payload);
-      let queries = {...state.queries, ...entry};
+      let queries = { ...state.queries, ...entry };
       saveHistory(queries);
-      return {...state, queries};
+      return { ...state, queries };
     case 'LOAD_HISTORY':
-      return {...state, queries: payload};
+      return { ...state, queries: payload };
     case 'OPEN_SESSION':
-      return {...state, session: state.queries[payload]}
+      console.log('opening');
+      return { ...state, session: state.queries[payload] }
     default:
       return state;
   }

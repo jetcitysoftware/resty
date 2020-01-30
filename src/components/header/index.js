@@ -4,7 +4,7 @@ class Header extends React.Component {
   render() {
     return (
       <header>
-        <h1>RESTy</h1>
+        <h1>REST Client Written By John</h1>
       </header>
     );
   }

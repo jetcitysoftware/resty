@@ -1,7 +1,7 @@
 import './resty.css';
 
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 import * as actions from '../../store/actions/resty.js';
 import ApiForm from './form.js';
@@ -22,20 +22,15 @@ class RESTy extends React.Component {
         </aside>
         <section className="deck">
           <ApiForm />
-          <div id="json">
-            <Response />
-          </div>
+          <Response />
         </section>
       </main>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
-});
-
 const mapDispatchToProps = (dispatch, getState) => ({
   loadHistory: () => dispatch(actions.loadHistory())
 })
 
-export default connect(mapStateToProps,mapDispatchToProps)(RESTy);
+export default connect(undefined, mapDispatchToProps)(RESTy);

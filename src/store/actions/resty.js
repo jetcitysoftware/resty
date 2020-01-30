@@ -26,26 +26,26 @@ export const api = payload => dispatch => {
   let headers = new Headers();
   headers.append('Content-Type', 'application/json');
 
-  if ( !! payload.authusername  && !! payload.authpassword ) {
+  if (!!payload.authusername && !!payload.authpassword) {
     let encrypted = btoa(`${payload.authusername}:${payload.authpassword}`);
     headers.append('Authorization', `Basic ${encrypted}`);
   }
-  if( !! payload.authtoken ) {
+  if (!!payload.authtoken) {
     headers.append('Authorization', `Bearer ${payload.authtoken}`);
   }
 
-  return fetch(payload.url,{
+  return fetch(payload.url, {
     method, cache, referrer, headers, body
   })
-    .then( response => {
+    .then(response => {
       let headers = {};
-      for(let header of response.headers){
+      for (let header of response.headers) {
         headers[header[0]] = header[1];
       }
       return response.json()
         .then(body => {
           dispatch(historyAction(payload));
-          dispatch(apiAction(payload.method, {headers, body}));
+          dispatch(apiAction(payload.method, { headers, body }));
         });
     });
 };
@@ -72,9 +72,16 @@ const historyAction = history => {
   };
 };
 
-const apiAction = (method,data) => {
+const apiAction = (method, data) => {
   return {
     type: method.toUpperCase(),
     payload: data,
+    loading: false,
   };
 };
+
+const loadingAction = () => {
+  return {
+    type: 'LOADING',
+  }
+}
