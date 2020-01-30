@@ -44,8 +44,9 @@ export const api = payload => dispatch => {
       }
       return response.json()
         .then(body => {
+          const loading = false;
           dispatch(historyAction(payload));
-          dispatch(apiAction(payload.method, { headers, body }));
+          dispatch(apiAction(payload.method, { headers, body, loading }));
         });
     });
 };
@@ -76,11 +77,10 @@ const apiAction = (method, data) => {
   return {
     type: method.toUpperCase(),
     payload: data,
-    loading: false,
   };
 };
 
-const loadingAction = () => {
+export const loading = () => {
   return {
     type: 'LOADING',
   }

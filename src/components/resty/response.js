@@ -4,9 +4,10 @@ import ReactJson from 'react-json-view';
 
 const Response = (props) => {
 
-  console.log('response', props.response);
+  let loading = 'loading-' + props.response.loading.toString();
+
   return (
-    <div id="json">
+    <div id="json" className={loading}>
       <ReactJson
         name="Headers"
         enableClipboard={false}
@@ -19,7 +20,7 @@ const Response = (props) => {
         collapsed={false}
         src={props.response.body}
       />
-    </div>
+    </div >
   );
 
 };

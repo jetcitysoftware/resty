@@ -1,6 +1,6 @@
 import React from 'react';
-import {useState, useEffect} from 'react';
-import {connect} from 'react-redux';
+import { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 
 import * as actions from '../../store/actions/resty.js';
 
@@ -14,7 +14,7 @@ const Form = (props) => {
   }, [props.session]);
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]:e.target.value});
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const toggleHeaders = (e) => {
@@ -24,6 +24,7 @@ const Form = (props) => {
 
   const callAPI = (e) => {
     e.preventDefault();
+    props.loading();
     props.api(form);
   };
 
@@ -153,9 +154,10 @@ const mapStateToProps = (state) => ({
   session: state.history.session
 });
 
-const mapDispatchToProps = (dispatch,getState) => ({
-  api: (payload) => dispatch(actions.api(payload))
+const mapDispatchToProps = (dispatch, getState) => ({
+  api: (payload) => dispatch(actions.api(payload)),
+  loading: () => dispatch(actions.loading())
 });
 
 
-export default connect(mapStateToProps,mapDispatchToProps)(Form);
+export default connect(mapStateToProps, mapDispatchToProps)(Form);
